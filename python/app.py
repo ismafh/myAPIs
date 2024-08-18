@@ -41,6 +41,11 @@ def create_task():
 
     return task_schema.jsonify(new_task)
 
+@app.route('/tasks', methods=['GET'])
+def get_tasks():
+    all_tasks = Task.query.all()
+    result = tasks_schema.dump(all_tasks)
+    return jsonify(result)
 
 if __name__ == '__main__':
     app.run(debug=True)
